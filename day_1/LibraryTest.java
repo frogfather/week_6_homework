@@ -31,21 +31,6 @@ public void before(){
   assertEquals(0, library.bookCount());    
 }
 
-@Test public void libraryFull(){
-  for (int i = 0; i < 10; i++){
-    library.addBook(book);
-    }
-    assertEquals(true,library.libraryFull());
-  }
-
-@Test public void cannotAddWhenFull(){
-  for (int i = 0; i < 10; i++){
-    library.addBook(book);
-    }
-    assertEquals(true,library.libraryFull()); 
-    library.addBook(book);
-    assertEquals(10,library.bookCount());
-  }
 
 
 }

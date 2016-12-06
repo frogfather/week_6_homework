@@ -1,39 +1,30 @@
+import java.util.*;
+
 class Library{
   private String name;
-  private Book[] shelves;
+  private ArrayList<Publication> shelves;
 
   public Library(String name){
     this.name = name;
-    this.shelves = new Book[10];
+    this.shelves = new ArrayList<Publication>();
   }  
 
   public String getName(){
     return this.name;
   }
 
-  public void addBook(Book book){
-    int bookCount = bookCount();
-    if (libraryFull() == false){
-      shelves[bookCount] = book;
-    }
+  public void addBook(Publication publication){
+    shelves.add(publication);
   }
 
-  public void removeBook(){
-    int bookCount = bookCount();
-    if (bookCount > 0){
-      shelves[bookCount-1] = null;
+  public Publication removeBook(){
+    if (bookCount() >0){
+      return shelves.remove(0);
+     }
+    return null; 
     }
-  }
-
-  public boolean libraryFull(){
-    return bookCount() == shelves.length;
-  }
 
   public int bookCount(){
-    int count =0;
-    for (Book book : shelves){
-      if (book != null) count++;
+    return shelves.size();
     }
-    return count;
-  }
 }
