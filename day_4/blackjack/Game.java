@@ -69,7 +69,19 @@ public class Game{
     return this.players.size();
     }
 
-
+  public int getScore(Player player){
+    int sum = 0;
+    ArrayList<Card> hand = player.getHand();
+    if (player.getHandSize() > 0){
+      for (Card card : hand) {
+        int cardValue = card.getValue();
+        if (cardValue > 10) {cardValue = 10;}
+        if ((cardValue == 1) && (sum < 11)) {cardValue = 11;} 
+        sum += cardValue;
+        }
+      }
+    return sum;  
+  }
 
   public void play(){
     // for (Type variable: arraylist) {do something}
@@ -89,13 +101,13 @@ public class Game{
           dealer.dealCard(player);          
         }
       //check score - if bust don't need to ask if wants to stick  
-      if (player.getHandValue() > 21){
+      if (getScore(player) > 21){
         player.setPlayerBust(true);
         activePlayers--;  
-        System.out.println("Oh dear "+player.getPlayerName()+" is bust! ("+player.getHandValue()+")");    
+        System.out.println("Oh dear "+player.getPlayerName()+" is bust! ("+getScore(player)+")");    
         }
       else {
-       stick = console.readLine(player.getPlayerName()+" has "+player.getHandSize()+" cards, value "+player.getHandValue()+". Stick? y/n ");
+       stick = console.readLine(player.getPlayerName()+" has "+player.getHandSize()+" cards, value "+getScore(player)+". Stick? y/n ");
 
        if (stick.equals("y")) {
           player.setPlayerStick(true);
@@ -106,7 +118,7 @@ public class Game{
     else
       {
        if (player.getPlayerStick() == true){
-        System.out.println(player.getPlayerName()+" is sticking at "+player.getHandValue());  
+        System.out.println(player.getPlayerName()+" is sticking at "+getScore(player));  
        }
        if (player.getPlayerBust() == true){
         System.out.println(player.getPlayerName()+" is bust ");  
@@ -125,9 +137,10 @@ public Player getFinalScores(){
   highScore = 0;  
   for (Player player: players){
     if (player.getPlayerBust() == false){
-      System.out.println(player.getPlayerName()+" has "+player.getHandValue());      
-      if (player.getHandValue() > highScore) {
-        highScore = player.getHandValue();
+      int playerScore = getScore(player);
+      System.out.println(player.getPlayerName()+" has "+playerScore);      
+      if (playerScore > highScore) {
+        highScore = playerScore;
         winner = player;
         }
       } 

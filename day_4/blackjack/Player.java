@@ -22,6 +22,10 @@ public int getHandSize(){
   return this.hand.size();
 }
 
+public ArrayList<Card> getHand(){
+  return this.hand;
+}
+
 public Card playCard(){
   if (getHandSize() > 0){
     return this.hand.get(0);
@@ -33,10 +37,7 @@ public int getHandValue(){
   int sum = 0;
   if (getHandSize() > 0){
     for (Card card : hand) {
-      int cardValue = card.getValue();
-      if (cardValue > 10) {cardValue = 10;}
-      if ((cardValue == 1) && (sum < 11)) {cardValue = 11;} 
-      sum += cardValue;
+      sum += card.getValue();
       }
     }
   return sum;  
