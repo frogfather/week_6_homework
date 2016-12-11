@@ -128,7 +128,11 @@ public class Game{
       
     }
   }
-  System.out.println(getFinalScores().getPlayerName()+" is the winner - Yay!");  
+  if (getFinalScores() != null) {
+  System.out.println(getFinalScores().getPlayerName()+" is the winner - Yay!"); }
+  else {
+  System.out.println("No winner in this round!");  
+  }
 }
 
 public Player getFinalScores(){
