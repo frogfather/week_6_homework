@@ -28,14 +28,7 @@ public int getCardCount(){
   return this.deck.size();
 }
 
-public Card getCard(SuitType suit, int value){
-  Card result = null;
-  for (int i=0; i < getCardCount(); i++){
-    Card card = deck.get(i);
-    if ((card.getSuit() == suit) && (card.getValue() == value)) {
-      result = card;
-    }
+public Card getCard(int position){
+  return deck.get(position);
   }
-return result;
-}
 }

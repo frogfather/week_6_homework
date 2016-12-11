@@ -11,7 +11,9 @@ public Dealer(String name, Dealable dealable){
 }
 
 public void dealCard(Player player){
-  Card card = deck.getCard(SuitType.HEART,8);
+  Random rand = new Random();
+  int i = rand.nextInt(deck.getCardCount()) +1;
+  Card card = deck.getCard(i);
   player.takeCard(card);
 }
 
